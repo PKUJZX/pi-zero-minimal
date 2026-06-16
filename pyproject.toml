@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mini-pi0"
+version = "0.1.0"
+description = "A minimal, readable PyTorch teaching implementation of the pi0 VLA core."
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+license = {file = "LICENSE"}
+authors = [
+  {name = "mini-pi0 contributors"},
+]
+keywords = ["pi0", "vision-language-action", "robotics", "paligemma", "pytorch"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy==1.26.4",
+  "pillow",
+  "safetensors",
+  "sentencepiece",
+  "torch==2.5.0",
+  "transformers==4.47.1",
+  "huggingface_hub[cli]",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.9.3",
+]
+
+[project.scripts]
+mini-pi0-train-synthetic = "mini_pi0.train:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["A", "B", "E", "F", "I", "RUF", "W"]
+ignore = ["E203", "E501", "B006", "B026", "B905"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+markers = [
+  "checkpoint: requires local google/paligemma-3b-pt-224 checkpoint",
+  "slow: long-running local acceptance checks",
+]
