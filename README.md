@@ -17,7 +17,7 @@ in a few files and can be tested locally.
 ## Quickstart
 
 ```bash
-git clone <your-mini-pi0-repo-url>
+git clone https://github.com/PKUJZX/pi-zero-minimal
 cd mini-pi0
 python3.10 -m venv .venv
 source .venv/bin/activate
